@@ -2,7 +2,7 @@ import './globals.scss';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
-const inter = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
+const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export const metadata: Metadata = {
   title: 'Blog app',
