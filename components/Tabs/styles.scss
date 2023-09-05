@@ -1,0 +1,14 @@
+.tabs {
+  display: flex;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+
+  &__item {
+    padding: 12px 16px;
+
+    &.active {
+      color: rgb(67, 97, 238);
+      border-bottom: 2px solid rgb(67, 97, 238);
+    }
+  }
+}

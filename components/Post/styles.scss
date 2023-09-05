@@ -1,0 +1,59 @@
+.post {
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 6px;
+
+  &__cover {
+    border-radius: 6px 6px 0 0;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &__footer {
+    display: flex;
+    padding: 20px;
+  }
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    margin-right: 10px;
+  }
+  &__author {
+    display: block;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  &__date {
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 15px;
+  }
+  &__tags {
+    display: flex;
+    font-size: 14px;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  &__stats {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 20px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
