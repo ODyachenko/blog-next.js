@@ -17,7 +17,7 @@ export const PostCommentsCreate: FC = () => {
           placeholder="Write your comment"
           required
         ></textarea>
-        <button className="comments__btn" type="submit">
+        <button className="comments__btn primary-btn" type="submit">
           Send
         </button>
       </form>

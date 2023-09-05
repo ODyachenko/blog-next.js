@@ -25,6 +25,7 @@ export const FullPost: FC<iPost> = ({
         alt="Post cover"
         width={690}
         height={300}
+        priority
       />
       <div className="post__footer">
         <Image

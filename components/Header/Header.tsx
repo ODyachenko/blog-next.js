@@ -17,10 +17,7 @@ export const Header: FC = () => {
             >
               Sign in
             </Link>
-            <Link
-              className="header__actions-item header__actions--reg"
-              href="/register"
-            >
+            <Link className="header__actions-item primary-btn" href="/register">
               Create account
             </Link>
           </div>
