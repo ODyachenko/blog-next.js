@@ -1,25 +1,24 @@
 import Image from '@/node_modules/next/image';
+import { iPost } from '@/types';
 import { FC } from 'react';
-import './styles.scss';
 import { PostTags } from './PostTags';
 import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
-import Link from '@/node_modules/next/link';
-import { iPost } from '@/types';
+import './styles.scss';
 
-export const Post: FC<iPost> = ({
-  id,
+export const FullPost: FC<iPost> = ({
   cover,
   avatar,
   author,
   date,
   title,
+  text,
   tags,
   views,
   commentsCount,
 }) => {
   return (
-    <Link href={`/post/${id}`} className="post">
+    <div className="post fullpost">
       <Image
         className="post__cover"
         src={cover}
@@ -39,6 +38,7 @@ export const Post: FC<iPost> = ({
           <span className="post__author">{author}</span>
           <span className="post__date">{date}</span>
           <h2 className="post__title">{title}</h2>
+          <p className="post__text">{text}</p>
           <PostTags tags={tags} />
           <div className="post__stats">
             <div className="post__stats-item">
@@ -50,6 +50,6 @@ export const Post: FC<iPost> = ({
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

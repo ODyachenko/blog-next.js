@@ -8,7 +8,7 @@ export const Tabs: FC = () => {
   const [isActive, setIsActive] = useState(0);
 
   return (
-    <ul className="home__tabs tabs">
+    <ul className="homepage__tabs tabs">
       {tabsList.map((tab, index) => {
         return (
           <li

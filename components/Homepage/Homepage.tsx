@@ -6,12 +6,10 @@ import { Sidebar } from '../Sidebar/Sidebar';
 export const Homepage: FC = () => {
   return (
     <div className="homepage">
-      <div className="container">
-        <Tabs />
-        <div className="homepage__wrapper">
-          <Main />
-          <Sidebar />
-        </div>
+      <Tabs />
+      <div className="homepage__wrapper">
+        <Main />
+        <Sidebar />
       </div>
     </div>
   );

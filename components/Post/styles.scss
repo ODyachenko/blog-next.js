@@ -1,9 +1,12 @@
 .post {
+  display: block;
   background: #fff;
   border: 1px solid #dedede;
   border-radius: 6px;
 
   &__cover {
+    width: 100%;
+    height: auto;
     border-radius: 6px 6px 0 0;
   }
 
@@ -38,6 +41,11 @@
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 15px;
   }
+  &__text {
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 20px;
+  }
   &__tags {
     display: flex;
     font-size: 14px;
@@ -54,6 +62,29 @@
       display: flex;
       align-items: center;
       gap: 5px;
+    }
+  }
+  &__comments {
+    background: #fff;
+    border: 1px solid #dedede;
+    border-radius: 6px;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .post:not(.fullpost) {
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #4361ee;
+      box-shadow: 0 0 0 1px #4361ee;
+    }
+  }
+  .post {
+    &__text {
+      text-align: justify;
     }
   }
 }

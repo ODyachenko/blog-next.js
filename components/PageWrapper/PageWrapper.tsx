@@ -1,5 +1,12 @@
-import { Container } from '@/node_modules/@mui/material/index';
+import { Header } from '../Header/Header';
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
-  return <Container maxWidth="lg">{children}</Container>;
+  return (
+    <>
+      <Header />
+      <div className="wrapper">
+        <div className="container">{children}</div>
+      </div>
+    </>
+  );
 };
