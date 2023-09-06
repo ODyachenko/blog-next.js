@@ -1,4 +1,5 @@
 .post {
+  position: relative;
   display: block;
   background: #fff;
   border: 1px solid #dedede;
@@ -8,6 +9,34 @@
     width: 100%;
     height: auto;
     border-radius: 6px 6px 0 0;
+  }
+  &__actions {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    opacity: 0;
+    transition: all 0.15s ease-in-out;
+
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    &-item {
+      display: block;
+      height: 40px;
+      padding: 8px;
+
+      & svg {
+        user-select: none;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        fill: rgb(67, 97, 238);
+        flex-shrink: 0;
+        transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        font-size: 1.5rem;
+      }
+    }
   }
 
   &:not(:last-child) {
@@ -83,6 +112,20 @@
     }
   }
   .post {
+    &:hover {
+      .post__actions {
+        opacity: 1;
+      }
+    }
+    &__actions {
+      &-item {
+        border-radius: 50%;
+        &:hover {
+          background-color: rgba(67, 97, 238, 0.05);
+        }
+      }
+    }
+
     &__text {
       text-align: justify;
     }
