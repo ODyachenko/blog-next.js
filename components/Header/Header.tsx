@@ -11,10 +11,7 @@ export const Header: FC = () => {
             Blog
           </Link>
           <div className="header__actions">
-            <Link
-              className="header__actions-item header__actions--sign"
-              href="/login"
-            >
+            <Link className="header__actions-item secondary-btn" href="/login">
               Sign in
             </Link>
             <Link className="header__actions-item primary-btn" href="/register">

@@ -25,16 +25,10 @@
     align-items: center;
     &-item {
       font-size: 14px;
-      border-radius: 4px;
-      padding: 7px 15px;
 
       &:not(:last-child) {
         margin-right: 10px;
       }
-    }
-    &--sign {
-      border: 1px solid rgba(25, 118, 210, 0.5);
-      color: #1976d2;
     }
   }
 }
@@ -43,7 +37,6 @@
     &__actions {
       &-item {
         font-size: 16px;
-        text-transform: uppercase;
       }
     }
   }
