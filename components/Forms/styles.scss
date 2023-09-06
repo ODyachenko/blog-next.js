@@ -22,6 +22,10 @@
     cursor: pointer;
     z-index: 100;
 
+    &--img {
+      border-radius: 50%;
+      margin: 0 auto;
+    }
     & input {
       visibility: hidden;
       position: absolute;
