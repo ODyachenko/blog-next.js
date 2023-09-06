@@ -1,6 +1,9 @@
+'use client';
+import { useAppSelector } from '@/hooks/hooks';
 import { FC } from 'react';
 import { Comments } from '../Comments/Comments';
 import { PostCommentsCreate } from './PostCommentsCreate';
+import { RootState } from '@/redux/store';
 
 const comments = [
   {
@@ -18,10 +21,12 @@ const comments = [
 ];
 
 export const PostComments: FC = () => {
+  const { isAuth } = useAppSelector((state: RootState) => state.user);
+
   return (
     <div className="post__comments">
       <Comments comments={comments} />
-      <PostCommentsCreate />
+      {isAuth && <PostCommentsCreate />}
     </div>
   );
 };

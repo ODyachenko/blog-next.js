@@ -11,6 +11,10 @@ export const postsApi = createApi({
       query: () => `/posts`,
       providesTags: ['posts'],
     }),
+    getPost: builder.query({
+      query: (id: string) => `/posts/${id}`,
+      providesTags: ['posts'],
+    }),
 
     // addToCollection: builder.mutation({
     //   query: (body: IAddCollectionAlbum) => ({
@@ -23,6 +27,9 @@ export const postsApi = createApi({
     deletePost: builder.mutation({
       query: (id: string) => ({
         url: `/posts/${id}`,
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
         method: 'DELETE',
       }),
       invalidatesTags: ['posts'],
@@ -30,4 +37,5 @@ export const postsApi = createApi({
   }),
 });
 
-export const { useGetPostsQuery, useDeletePostMutation } = postsApi;
+export const { useGetPostsQuery, useGetPostQuery, useDeletePostMutation } =
+  postsApi;

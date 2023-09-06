@@ -5,9 +5,10 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { PostActions } from './PostActions';
-import { iPost } from '@/types';
 import './styles.scss';
 import { convertDate } from '@/utils/convertDate';
+import { useAppSelector } from '@/hooks/hooks';
+import { RootState } from '@/redux/store';
 
 export const Post: FC = ({
   _id,
@@ -18,8 +19,10 @@ export const Post: FC = ({
   tags,
   viewsCount,
 }: any) => {
+  const { isAuth } = useAppSelector((state: RootState) => state.user);
+
   return (
-    <Link href={`/post/${_id}`} className="post">
+    <Link href={`/posts/${_id}`} className="post">
       <Image
         className="post__cover"
         src={cover}
@@ -28,7 +31,8 @@ export const Post: FC = ({
         height={300}
         priority
       />
-      <PostActions id={_id} />
+
+      {isAuth && <PostActions id={_id} />}
       <div className="post__footer">
         <Image
           className="post__avatar"

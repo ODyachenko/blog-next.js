@@ -1,22 +1,20 @@
 import Image from '@/node_modules/next/image';
-import { iPost } from '@/types';
 import { FC } from 'react';
 import { PostTags } from './PostTags';
 import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
 import './styles.scss';
+import { convertDate } from '@/utils/convertDate';
 
-export const FullPost: FC<iPost> = ({
+export const FullPost: FC = ({
   cover,
-  avatar,
-  author,
-  date,
+  user,
+  createdAt,
   title,
   text,
   tags,
-  views,
-  commentsCount,
-}) => {
+  viewsCount,
+}: any) => {
   return (
     <div className="post fullpost">
       <Image
@@ -30,23 +28,23 @@ export const FullPost: FC<iPost> = ({
       <div className="post__footer">
         <Image
           className="post__avatar"
-          src={avatar}
+          src={user.avatarUrl}
           alt="Post avatar"
           width={30}
           height={30}
         />
         <div className="post__content">
-          <span className="post__author">{author}</span>
-          <span className="post__date">{date}</span>
+          <span className="post__author">{user.fullName}</span>
+          <span className="post__date">{convertDate(createdAt)}</span>
           <h2 className="post__title">{title}</h2>
           <p className="post__text">{text}</p>
           <PostTags tags={tags} />
           <div className="post__stats">
             <div className="post__stats-item">
-              <AiOutlineEye size={20} /> {views}
+              <AiOutlineEye size={20} /> {viewsCount}
             </div>
             <div className="post__stats-item">
-              <LuMessageSquare size={20} /> {commentsCount}
+              <LuMessageSquare size={20} /> {0}
             </div>
           </div>
         </div>

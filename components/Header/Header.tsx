@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Link from '@/node_modules/next/link';
 import './styles.scss';
+import { HeaderActions } from './HeaderActions';
 
 export const Header: FC = () => {
   return (
@@ -11,21 +12,7 @@ export const Header: FC = () => {
             Blog
           </Link>
           <div className="header__actions">
-            <Link className="header__actions-item secondary-btn" href="/login">
-              Sign in
-            </Link>
-            <Link className="header__actions-item primary-btn" href="/register">
-              Create account
-            </Link>
-            <Link
-              className="header__actions-item secondary-btn"
-              href="/post/create"
-            >
-              Write the article
-            </Link>
-            <Link className="header__actions-item danger-btn" href="/">
-              Log out
-            </Link>
+            <HeaderActions />
           </div>
         </div>
       </div>

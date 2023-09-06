@@ -1,11 +1,12 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import Image from '@/node_modules/next/image';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useCreateUserMutation } from '@/redux/api/user.api';
 import './styles.scss';
 
 type Inputs = {
-  avatar?: File;
+  avatarUrl?: string;
   fullName: string;
   email: string;
   password: string;
@@ -16,11 +17,13 @@ export const RegisterForm: FC = () => {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' });
+  const [createUser] = useCreateUserMutation();
+
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(data);
+    createUser(data);
     reset();
   };
   const [files, setFiles] = useState<File[]>([]);
@@ -60,7 +63,9 @@ export const RegisterForm: FC = () => {
           type="file"
           accept="image/*"
           onChange={onChangeField}
-          //   {...register('avatar')}
+          {...register('avatarUrl', {
+            value: 'https://mui.com/static/images/avatar/4.jpg',
+          })}
         />
       </label>
       <input
@@ -104,7 +109,7 @@ export const RegisterForm: FC = () => {
         <span className="form__error">{errors.password.message}</span>
       )}
       <button className="form__btn primary-btn" type="submit">
-        Log in
+        Create
       </button>
     </form>
   );

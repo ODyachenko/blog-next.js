@@ -1,7 +1,12 @@
 'use client';
+import { useAppDispatch } from '@/hooks/hooks';
+import { useLoginUserMutation } from '@/redux/api/user.api';
+import { setIsAuth } from '@/redux/slices/userSlice';
 import { FC } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { BeatLoader } from '@/node_modules/react-spinners';
 import './styles.scss';
+import { useRouter } from 'next/navigation';
 
 type Inputs = {
   email: string;
@@ -15,9 +20,20 @@ export const LoginForm: FC = () => {
     reset,
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' });
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    console.log(data);
-    reset();
+  const [loginUser, { isLoading, isError }] = useLoginUserMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    try {
+      const response = await loginUser(data);
+      localStorage.setItem('token', response.data.token);
+      dispatch(setIsAuth(true));
+      reset();
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -51,7 +67,7 @@ export const LoginForm: FC = () => {
         <span className="form__error">{errors.password.message}</span>
       )}
       <button className="form__btn primary-btn" type="submit">
-        Log in
+        {isLoading ? <BeatLoader size={15} color="#fff" /> : 'Log in'}
       </button>
     </form>
   );
