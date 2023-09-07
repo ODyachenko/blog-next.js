@@ -1,10 +1,10 @@
-import Image from '@/node_modules/next/image';
 import { FC } from 'react';
-import { PostTags } from './PostTags';
+import Image from '@/node_modules/next/image';
 import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
-import './styles.scss';
+import { PostTags } from './PostTags';
 import { convertDate } from '@/utils/convertDate';
+import './styles.scss';
 
 export const FullPost: FC = ({
   cover,

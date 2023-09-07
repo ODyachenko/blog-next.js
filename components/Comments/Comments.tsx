@@ -11,7 +11,7 @@ export const Comments: FC<CommentsProps> = ({ comments }) => {
   return (
     <ul className="comments__list comments">
       {comments.map((comment) => {
-        return <CommentsItem key={comment.id} {...comment} />;
+        return <CommentsItem key={comment._id} {...comment} />;
       })}
     </ul>
   );

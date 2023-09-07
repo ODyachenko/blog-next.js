@@ -8,10 +8,15 @@ export const userApi = createApi({
     baseUrl: 'http://localhost:4444',
   }),
   endpoints: (builder: any) => ({
-    // getPosts: builder.query({
-    //   query: () => `/auth/registration`,
-    //   providesTags: ['user'],
-    // }),
+    getAuthUser: builder.query({
+      query: () => ({
+        url: `/auth/me`,
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      }),
+      providesTags: ['user'],
+    }),
     createUser: builder.mutation({
       query: (body: iUserReg) => ({
         url: `/auth/registration`,
@@ -31,4 +36,8 @@ export const userApi = createApi({
   }),
 });
 
-export const { useCreateUserMutation, useLoginUserMutation } = userApi;
+export const {
+  useCreateUserMutation,
+  useLoginUserMutation,
+  useGetAuthUserQuery,
+} = userApi;

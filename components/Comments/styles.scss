@@ -46,4 +46,10 @@
     display: inline-block;
     width: auto;
   }
+  &__error {
+    display: block;
+    font-size: 14px;
+    color: red;
+    margin-bottom: 10px;
+  }
 }

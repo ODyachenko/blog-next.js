@@ -12,9 +12,13 @@
 // }
 
 export interface iComments {
-  id: string;
+  _id: string;
   avatar: string;
   author: string;
+  user: {
+    avatarUrl: string;
+    fullName: string;
+  };
   text: string;
 }
 

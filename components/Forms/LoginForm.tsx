@@ -1,12 +1,12 @@
 'use client';
-import { useAppDispatch } from '@/hooks/hooks';
-import { useLoginUserMutation } from '@/redux/api/user.api';
-import { setIsAuth } from '@/redux/slices/userSlice';
 import { FC } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BeatLoader } from '@/node_modules/react-spinners';
+import { setIsAuth } from '@/redux/slices/userSlice';
+import { useLoginUserMutation } from '@/redux/api/user.api';
+import { useAppDispatch } from '@/hooks/hooks';
 import './styles.scss';
-import { useRouter } from 'next/navigation';
 
 type Inputs = {
   email: string;
@@ -60,7 +60,7 @@ export const LoginForm: FC = () => {
         placeholder="Password"
         {...register('password', {
           required: 'This field is required',
-          minLength: { value: 4, message: 'Min length is 4' },
+          minLength: { value: 5, message: 'Min length is 5' },
         })}
       />
       {errors.password && (

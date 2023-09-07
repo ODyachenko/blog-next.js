@@ -5,7 +5,7 @@ import { useGetPostsQuery } from '@/redux/api/posts.api';
 import PostSkelleton from '../Post/PostSkelleton';
 
 export const Main: FC = () => {
-  const { data, isLoading, error } = useGetPostsQuery();
+  const { data, isLoading, isError } = useGetPostsQuery();
 
   return (
     <main className="main">
