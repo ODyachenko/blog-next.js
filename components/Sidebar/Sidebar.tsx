@@ -1,3 +1,5 @@
+'use client';
+import { useGetCommentsQuery } from '@/redux/api/comments.api';
 import { FC } from 'react';
 import { Comments } from '../Comments/Comments';
 import { SidebarItem } from './SidebarItem';
@@ -6,39 +8,19 @@ import './styles.scss';
 
 const tags: string[] = ['react', 'typescript', 'node'];
 
-const comments = [
-  {
-    id: '1',
-    avatar:
-      'https://res.cloudinary.com/practicaldev/image/fetch/s--uigxYVRB--/c_fill,f_auto,fl_progressive,h_50,q_auto,w_50/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/187971/a5359a24-b652-46be-8898-2c5df32aa6e0.png',
-    author: 'Admin',
-    text: 'comment text',
-  },
-  {
-    id: '2',
-    avatar:
-      'https://res.cloudinary.com/practicaldev/image/fetch/s--uigxYVRB--/c_fill,f_auto,fl_progressive,h_50,q_auto,w_50/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/187971/a5359a24-b652-46be-8898-2c5df32aa6e0.png',
-    author: 'Admin',
-    text: 'comment text',
-  },
-  {
-    id: '3',
-    avatar:
-      'https://res.cloudinary.com/practicaldev/image/fetch/s--uigxYVRB--/c_fill,f_auto,fl_progressive,h_50,q_auto,w_50/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/187971/a5359a24-b652-46be-8898-2c5df32aa6e0.png',
-    author: 'Admin',
-    text: 'comment text',
-  },
-];
-
 export const Sidebar: FC = () => {
+  const { data, isLoading, isError } = useGetCommentsQuery();
+
   return (
     <aside className="sidebar">
       <SidebarItem title="Tags">
         <SidebarTags tags={tags} />
       </SidebarItem>
-      <SidebarItem title="Comments">
-        <Comments comments={comments} />
-      </SidebarItem>
+      {data && (
+        <SidebarItem title="Comments">
+          <Comments comments={data} />
+        </SidebarItem>
+      )}
     </aside>
   );
 };
