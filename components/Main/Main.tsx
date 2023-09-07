@@ -9,13 +9,19 @@ export const Main: FC = () => {
 
   return (
     <main className="main">
-      {data
-        ? data.map((post: any) => <Post key={post._id} {...post} />)
-        : isLoading
-        ? Array(3)
-            .fill('')
-            .map((item, index) => <PostSkelleton key={index} />)
-        : console.log('Error')}
+      {data ? (
+        data.length ? (
+          data.map((post: any) => <Post key={post._id} {...post} />)
+        ) : (
+          <h1 className="main__empty">Unfortunately, there are no articles</h1>
+        )
+      ) : isLoading ? (
+        Array(3)
+          .fill('')
+          .map((_, index) => <PostSkelleton key={index} />)
+      ) : (
+        console.log('Error')
+      )}
     </main>
   );
 };

@@ -8,8 +8,8 @@ const PostSkelleton: FC = (props) => (
     width={750}
     height={506}
     viewBox="0 0 750 506"
-    backgroundColor="rgba(0, 0, 0, 0.6)"
-    foregroundColor="#f2f2f2"
+    backgroundColor="#dddbdb"
+    foregroundColor="#f6f6f6"
     {...props}
   >
     <rect x="43" y="43" rx="0" ry="0" width="1" height="0" />

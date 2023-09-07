@@ -7,7 +7,7 @@ import { convertDate } from '@/utils/convertDate';
 import './styles.scss';
 
 export const FullPost: FC = ({
-  cover,
+  imageUrl,
   user,
   createdAt,
   title,
@@ -19,7 +19,7 @@ export const FullPost: FC = ({
     <div className="post fullpost">
       <Image
         className="post__cover"
-        src={cover}
+        src={imageUrl}
         alt="Post cover"
         width={690}
         height={300}

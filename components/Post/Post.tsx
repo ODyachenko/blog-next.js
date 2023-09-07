@@ -12,7 +12,7 @@ import { RootState } from '@/redux/store';
 
 export const Post: FC = ({
   _id,
-  cover,
+  imageUrl,
   user,
   createdAt,
   title,
@@ -26,7 +26,7 @@ export const Post: FC = ({
       <Link href={`/posts/${_id}`}>
         <Image
           className="post__cover"
-          src={cover}
+          src={imageUrl}
           alt={title}
           width={690}
           height={300}

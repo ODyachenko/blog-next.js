@@ -5,7 +5,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { BeatLoader } from '@/node_modules/react-spinners';
 import { setIsAuth } from '@/redux/slices/userSlice';
 import { useLoginUserMutation } from '@/redux/api/user.api';
-import { useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { RootState } from '@/redux/store';
 import './styles.scss';
 
 type Inputs = {
@@ -21,8 +22,11 @@ export const LoginForm: FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' });
   const [loginUser, { isLoading, isError }] = useLoginUserMutation();
+  const { isAuth } = useAppSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  isAuth && router.push('/');
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {

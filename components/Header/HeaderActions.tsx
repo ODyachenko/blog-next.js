@@ -34,7 +34,7 @@ export const HeaderActions: FC = () => {
           {' '}
           <Link
             className="header__actions-item secondary-btn"
-            href="/post/create"
+            href="/posts/create"
           >
             Write the article
           </Link>
