@@ -18,6 +18,11 @@
       position: absolute;
       z-index: -1;
     }
+    &--delete {
+      display: inline-block;
+      width: auto;
+      margin-bottom: 30px;
+    }
   }
   &__heading {
     font-size: 30px;
@@ -38,6 +43,9 @@
     margin-right: 15px;
   }
   &__cancel {
+    display: inline-block;
+    width: auto;
+    cursor: pointer;
     color: #1976d2;
   }
 }

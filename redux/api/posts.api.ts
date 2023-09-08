@@ -27,6 +27,17 @@ export const postsApi = createApi({
       }),
       invalidatesTags: ['posts'],
     }),
+    editPost: builder.mutation({
+      query: ({ id, ...post }: any) => ({
+        url: `/posts/${id}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+        body: post,
+      }),
+      invalidatesTags: ['posts'],
+    }),
     deletePost: builder.mutation({
       query: (id: string) => ({
         url: `/posts/${id}`,
@@ -45,4 +56,5 @@ export const {
   useGetPostQuery,
   useDeletePostMutation,
   useCreatePostMutation,
+  useEditPostMutation,
 } = postsApi;

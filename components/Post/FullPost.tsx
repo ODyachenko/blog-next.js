@@ -5,6 +5,7 @@ import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { convertDate } from '@/utils/convertDate';
 import './styles.scss';
+import ReactMarkdown from '@/node_modules/react-markdown/index';
 
 export const FullPost: FC = ({
   imageUrl,
@@ -37,7 +38,7 @@ export const FullPost: FC = ({
           <span className="post__author">{user.fullName}</span>
           <span className="post__date">{convertDate(createdAt)}</span>
           <h2 className="post__title">{title}</h2>
-          <p className="post__text">{text}</p>
+          <ReactMarkdown className="post__text" children={text} />
           <PostTags tags={tags} />
           <div className="post__stats">
             <div className="post__stats-item">

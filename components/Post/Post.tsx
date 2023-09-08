@@ -5,10 +5,10 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { PostActions } from './PostActions';
-import './styles.scss';
 import { convertDate } from '@/utils/convertDate';
 import { useAppSelector } from '@/hooks/hooks';
 import { RootState } from '@/redux/store';
+import './styles.scss';
 
 export const Post: FC = ({
   _id,

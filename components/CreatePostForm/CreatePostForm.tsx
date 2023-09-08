@@ -1,21 +1,41 @@
-'use client';
-import { FC, useCallback, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import Image from '@/node_modules/next/image';
-import Link from '@/node_modules/next/link';
+import { useRouter } from 'next/navigation';
 import SimpleMDE from 'react-simplemde-editor';
 import { useUploadImageMutation } from '@/redux/api/uploads.api';
+import {
+  useCreatePostMutation,
+  useEditPostMutation,
+  useGetPostQuery,
+} from '@/redux/api/posts.api';
 import './styles.scss';
-import { useCreatePostMutation } from '@/redux/api/posts.api';
 
-export const CreatePostForm: FC = () => {
+type CreatePostProps = {
+  id: string;
+};
+
+const initialState = {
+  title: '',
+  tags: [],
+  text: '',
+  imageUrl: '',
+};
+
+export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
   const [uploadImage] = useUploadImageMutation();
   const [createPost] = useCreatePostMutation();
-  const [postData, setPostData] = useState({
-    title: '',
-    tags: [],
-    text: '',
-    imageUrl: '',
-  });
+  const [postData, setPostData] = useState(initialState);
+  const router = useRouter();
+
+  ////////////////////////
+  const { data, isLoading, isError } = useGetPostQuery(id);
+  const [editPost] = useEditPostMutation();
+
+  useEffect(() => {
+    if (data) {
+      setPostData(data);
+    }
+  }, [isLoading]);
 
   const onChange = useCallback(
     (value: string) => {
@@ -31,6 +51,7 @@ export const CreatePostForm: FC = () => {
       placeholder: 'Enter the text...',
       status: false,
       autosave: {
+        uniqueId: 'MyUniqueID',
         enabled: true,
         delay: 1000,
       },
@@ -52,36 +73,76 @@ export const CreatePostForm: FC = () => {
     }
   };
 
+  const onClickDeleteCover = () => {
+    setPostData({ ...postData, imageUrl: '' });
+  };
+
   const handleChangeField = (name: string, event: any) => {
     name == 'tags'
       ? setPostData({ ...postData, [name]: event.target.value.split(',') })
       : setPostData({ ...postData, [name]: event.target.value });
   };
 
-  const onSubmitForm = async (event: any) => {
-    event.preventDefault();
+  const handleEditPost = async () => {
     try {
-      await createPost(postData);
+      const data = {
+        id: id,
+        title: postData.title,
+        text: postData.text,
+        tags: postData.tags,
+        imageUrl: postData.imageUrl,
+      };
+      await editPost(data);
+      setPostData(initialState);
+      router.push('/');
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleCreatePost = async () => {
+    try {
+      await createPost(postData);
+      setPostData(initialState);
+      router.back();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onSubmitForm = (event: any) => {
+    event.preventDefault();
+    if (id) {
+      handleEditPost();
+      return;
+    }
+    handleCreatePost();
+  };
+
   return (
     <form className="post__create create" onSubmit={onSubmitForm}>
       {postData.imageUrl ? (
-        <Image
-          className="create__cover"
-          src={postData.imageUrl}
-          alt="Uploaded"
-          width={1000}
-          height={420}
-        />
+        <>
+          <Image
+            className="create__cover"
+            src={postData.imageUrl}
+            alt="Uploaded"
+            width={1000}
+            height={420}
+          />
+          <button
+            className="create__cover--delete secondary-btn"
+            onClick={onClickDeleteCover}
+          >
+            Delete cover
+          </button>
+        </>
       ) : (
         <label className="create__cover secondary-btn">
           Choose the cover
           <input
             type="file"
+            name="imageUrl"
             accept="image/*"
             required
             hidden
@@ -113,9 +174,9 @@ export const CreatePostForm: FC = () => {
       <button className="create__publish primary-btn" type="submit">
         Publish
       </button>
-      <Link className="create__cancel" href="/">
+      <div className="create__cancel" onClick={() => router.back()}>
         Cancel
-      </Link>
+      </div>
     </form>
   );
 };
