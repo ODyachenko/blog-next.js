@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Link from '@/node_modules/next/link';
 import './styles.scss';
 import { HeaderActions } from './HeaderActions';
+import { Popup } from '../Popup/Popup';
 
 export const Header: FC = () => {
   return (
@@ -16,6 +17,7 @@ export const Header: FC = () => {
           </div>
         </div>
       </div>
+      {/* <Popup text="Do you want logout?" /> */}
     </header>
   );
 };

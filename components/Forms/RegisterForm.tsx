@@ -4,6 +4,8 @@ import Image from '@/node_modules/next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useCreateUserMutation } from '@/redux/api/user.api';
 import './styles.scss';
+import { useUploadImageMutation } from '@/redux/api/uploads.api';
+import { useRouter } from 'next/navigation';
 
 type Inputs = {
   avatarUrl?: string;
@@ -20,53 +22,44 @@ export const RegisterForm: FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' });
   const [createUser] = useCreateUserMutation();
+  const [uploadImage] = useUploadImageMutation();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    console.log(data);
-    createUser(data);
-    reset();
-  };
-  const [files, setFiles] = useState<File[]>([]);
-  const urls = files.map((file) => URL.createObjectURL(file));
+    const formData = { ...data, avatarUrl: avatar };
+    console.log(formData);
 
-  const onChangeField = (event: any) => {
-    const fileList = event.target.files;
-    fileList && setFiles([...fileList]);
+    // createUser(formData);
+    // reset();
+    // router.push('/login');
+  };
+  const [avatar, setAvatar] = useState(
+    'http://localhost:4444/uploads/avatar_private.png'
+  );
+
+  const handleChangeFile = async (event: any) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', event.target.files[0]);
+      const { data } = await uploadImage(formData);
+      setAvatar(`http://localhost:4444${data.url}`);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <form className="login__form form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="form__title">Сreate account</h1>
       <label className="form__avatar">
-        {!!files.length ? (
-          <Image
-            className="form__avatar--img"
-            src={urls[0]}
-            alt="test"
-            height={100}
-            width={100}
-          />
-        ) : (
-          <svg
-            fill="#bdbdbd"
-            width="100px"
-            height="100px"
-            viewBox="0 0 512 512"
-            id="_x30_1"
-            version="1.1"
-          >
-            <path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,90  c37.02,0,67.031,35.468,67.031,79.219S293.02,248.438,256,248.438s-67.031-35.468-67.031-79.219S218.98,90,256,90z M369.46,402  H142.54c-11.378,0-20.602-9.224-20.602-20.602C121.938,328.159,181.959,285,256,285s134.062,43.159,134.062,96.398  C390.062,392.776,380.839,402,369.46,402z" />
-          </svg>
-        )}
-
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onChangeField}
-          {...register('avatarUrl', {
-            value: 'https://mui.com/static/images/avatar/4.jpg',
-          })}
+        <Image
+          className="form__avatar--img"
+          src={avatar}
+          alt="User avatar"
+          height={100}
+          width={100}
         />
+        <input type="file" accept="image/*" onChange={handleChangeFile} />
       </label>
       <input
         className="form__field"
