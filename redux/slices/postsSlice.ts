@@ -12,7 +12,7 @@ const initialState: PostsState = {
   filterRules: [],
 };
 
-export const postsSlice = createSlice({
+export const postsSlice: any = createSlice({
   name: 'posts',
   initialState,
   reducers: {

@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import Image from '@/node_modules/next/image';
 import { iComments } from '@/types';
-import { FC } from 'react';
 
 export const CommentsItem: FC<iComments> = ({ user, text }) => {
   return (

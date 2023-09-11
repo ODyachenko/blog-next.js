@@ -6,7 +6,7 @@ import ReduxProvider from '@/redux/Provider';
 const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export const metadata: Metadata = {
-  title: 'Blog app',
+  title: 'Next.js Blog App',
   description: 'Blog app',
 };
 

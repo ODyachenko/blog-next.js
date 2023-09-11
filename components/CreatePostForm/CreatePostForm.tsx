@@ -1,4 +1,11 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  FC,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import Image from '@/node_modules/next/image';
 import { useRouter } from 'next/navigation';
 import SimpleMDE from 'react-simplemde-editor';
@@ -27,7 +34,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
   const [postData, setPostData] = useState(initialState);
   const router = useRouter();
 
-  ////////////////////////
+  //////////////////////// @TODO
   const { data, isLoading, isError } = useGetPostQuery(id);
   const [editPost] = useEditPostMutation();
 
@@ -113,7 +120,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
     }
   };
 
-  const onSubmitForm = (event: any) => {
+  const onSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (id) {
       handleEditPost();

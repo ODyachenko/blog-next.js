@@ -1,6 +1,6 @@
-import { iComments } from '@/types';
 import { FC } from 'react';
 import { CommentsItem } from './CommentsItem';
+import { iComments } from '@/types';
 import './styles.scss';
 
 type CommentsProps = {

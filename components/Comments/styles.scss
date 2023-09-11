@@ -3,16 +3,16 @@
     display: flex;
     align-items: flex-start;
 
-    &:not(:last-child) {
+    &:not(.comments__item--create) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       margin-bottom: 15px;
       padding-bottom: 15px;
     }
-    &--create {
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
-      padding-top: 15px;
-      margin-top: 15px;
-    }
+    // &--create {
+    //   border-top: 1px solid rgba(0, 0, 0, 0.12);
+    //   padding-top: 15px;
+    //   margin-top: 15px;
+    // }
   }
   &__avatar {
     border-radius: 50%;

@@ -1,9 +1,9 @@
 'use client';
 import { FC, useEffect } from 'react';
 import Link from 'next/link';
-import { RootState } from '@/redux/store';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { setIsAuth } from '@/redux/slices/userSlice';
+import { RootState } from '@/redux/store';
 
 export const HeaderActions: FC = () => {
   const { isAuth } = useAppSelector((state: RootState) => state.user);

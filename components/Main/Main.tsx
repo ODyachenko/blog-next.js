@@ -5,6 +5,7 @@ import { useGetPostsQuery } from '@/redux/api/posts.api';
 import PostSkelleton from '../Post/PostSkelleton';
 import { useAppSelector } from '@/hooks/hooks';
 import { RootState } from '@/redux/store';
+import { iPost } from '@/types';
 
 export const Main: FC = () => {
   const { sortingRule, filterRules } = useAppSelector(
@@ -19,7 +20,7 @@ export const Main: FC = () => {
     <main className="main">
       {data ? (
         data.length ? (
-          data.map((post: any) => <Post key={post._id} {...post} />)
+          data.map((post: iPost) => <Post key={post._id} {...post} />)
         ) : (
           <h1 className="main__empty">Unfortunately, there are no articles</h1>
         )

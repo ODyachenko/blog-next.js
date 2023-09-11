@@ -1,15 +1,24 @@
-// export interface iPost {
-//   id: string;
-//   cover: string;
-//   avatar: string;
-//   author: string;
-//   date: string;
-//   title: string;
-//   text?: string;
-//   tags: string[];
-//   views: number;
-//   commentsCount: number;
-// }
+export interface iUser {
+  _id: string;
+  avatarUrl: string;
+  createdAt: string;
+  updateAt: string;
+  email: string;
+  fullName: string;
+  passwordHash?: string;
+}
+
+export interface iPost {
+  _id: string;
+  createdAt: string;
+  imageUrl: string;
+  tags?: string[];
+  text: string;
+  title: string;
+  updateAt?: string;
+  user: iUser;
+  viewsCount: number;
+}
 
 export interface iComments {
   _id: string;

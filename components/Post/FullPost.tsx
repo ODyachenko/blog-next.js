@@ -4,10 +4,11 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { convertDate } from '@/utils/convertDate';
-import './styles.scss';
 import ReactMarkdown from '@/node_modules/react-markdown/index';
+import { iPost } from '@/types';
+import './styles.scss';
 
-export const FullPost: FC = ({
+export const FullPost: FC<iPost> = ({
   imageUrl,
   user,
   createdAt,
@@ -15,14 +16,14 @@ export const FullPost: FC = ({
   text,
   tags,
   viewsCount,
-}: any) => {
+}) => {
   return (
     <div className="post fullpost">
       <Image
         className="post__cover"
         src={imageUrl}
         alt="Post cover"
-        width={690}
+        width={1148}
         height={300}
         priority
       />
@@ -31,8 +32,8 @@ export const FullPost: FC = ({
           className="post__avatar"
           src={user.avatarUrl}
           alt="Post avatar"
-          width={30}
-          height={30}
+          width={50}
+          height={50}
         />
         <div className="post__content">
           <span className="post__author">{user.fullName}</span>

@@ -8,8 +8,11 @@ import { PostActions } from './PostActions';
 import { convertDate } from '@/utils/convertDate';
 import './styles.scss';
 import { useGetAuthUserQuery } from '@/redux/api/user.api';
+import { useAppSelector } from '@/hooks/hooks';
+import { RootState } from '@/redux/store';
+import { iPost } from '@/types';
 
-export const Post: FC = ({
+export const Post: FC<iPost> = ({
   _id,
   imageUrl,
   user,
@@ -17,8 +20,9 @@ export const Post: FC = ({
   title,
   tags,
   viewsCount,
-}: any) => {
+}) => {
   const { data } = useGetAuthUserQuery();
+  const { isAuth } = useAppSelector((state: RootState) => state.user);
 
   return (
     <div className="post">
@@ -27,7 +31,7 @@ export const Post: FC = ({
           className="post__cover"
           src={imageUrl}
           alt={title}
-          width={690}
+          width={1148}
           height={300}
           priority
         />
@@ -36,8 +40,8 @@ export const Post: FC = ({
             className="post__avatar"
             src={user.avatarUrl}
             alt="Post avatar"
-            width={30}
-            height={30}
+            width={50}
+            height={50}
           />
           <div className="post__content">
             <span className="post__author">{user.fullName}</span>
@@ -55,7 +59,7 @@ export const Post: FC = ({
           </div>
         </div>
       </Link>
-      {data && user._id === data._id && <PostActions id={_id} />}
+      {data && isAuth && user._id === data._id && <PostActions id={_id} />}
     </div>
   );
 };
