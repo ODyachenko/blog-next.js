@@ -1,6 +1,6 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { RootState } from '@/redux/store';
 import './styles.scss';
 import { setSortingRule } from '@/redux/slices/postsSlice';

@@ -7,10 +7,13 @@ import { useAppSelector } from '@/hooks/hooks';
 import { RootState } from '@/redux/store';
 
 export const Main: FC = () => {
-  const { sortingRule } = useAppSelector((state: RootState) => state.posts);
-  const { data, isLoading } = useGetPostsQuery(
-    sortingRule ? 'viewsCount' : 'createdAt'
+  const { sortingRule, filterRules } = useAppSelector(
+    (state: RootState) => state.posts
   );
+  const { data, isLoading } = useGetPostsQuery({
+    sortingRule: !!sortingRule ? 'viewsCount' : 'createdAt',
+    filterRules,
+  });
 
   return (
     <main className="main">

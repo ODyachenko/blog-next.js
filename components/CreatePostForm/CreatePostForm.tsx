@@ -79,7 +79,10 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
 
   const handleChangeField = (name: string, event: any) => {
     name == 'tags'
-      ? setPostData({ ...postData, [name]: event.target.value.split(',') })
+      ? setPostData({
+          ...postData,
+          [name]: event.target.value.toLowerCase().split(','),
+        })
       : setPostData({ ...postData, [name]: event.target.value });
   };
 

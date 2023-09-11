@@ -8,12 +8,14 @@ export const postsApi = createApi({
   }),
   endpoints: (builder: any) => ({
     getPosts: builder.query({
-      query: (sort: string) => `/posts?${sort}=desc`,
+      query: (params: any) =>
+        `/posts?sortBy=${params.sortingRule}${
+          params.filterRules.length ? `&&filter=${params.filterRules}` : ''
+        }`,
       providesTags: ['posts'],
     }),
     getPost: builder.query({
       query: (id: string) => `/posts/${id}`,
-      // invalidatesTags: ['posts'],
     }),
 
     createPost: builder.mutation({
