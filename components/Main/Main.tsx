@@ -3,9 +3,14 @@ import { FC } from 'react';
 import { Post } from '../Post/Post';
 import { useGetPostsQuery } from '@/redux/api/posts.api';
 import PostSkelleton from '../Post/PostSkelleton';
+import { useAppSelector } from '@/hooks/hooks';
+import { RootState } from '@/redux/store';
 
 export const Main: FC = () => {
-  const { data, isLoading, isError } = useGetPostsQuery();
+  const { sortingRule } = useAppSelector((state: RootState) => state.posts);
+  const { data, isLoading } = useGetPostsQuery(
+    sortingRule ? 'viewsCount' : 'createdAt'
+  );
 
   return (
     <main className="main">

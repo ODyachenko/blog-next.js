@@ -1,11 +1,15 @@
 'use client';
-import { FC, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { FC } from 'react';
+import { RootState } from '@/redux/store';
 import './styles.scss';
+import { setSortingRule } from '@/redux/slices/postsSlice';
 
 const tabsList: string[] = ['New', 'Popular'];
 
 export const Tabs: FC = () => {
-  const [isActive, setIsActive] = useState(0);
+  const { sortingRule } = useAppSelector((state: RootState) => state.posts);
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="homepage__tabs tabs">
@@ -13,8 +17,8 @@ export const Tabs: FC = () => {
         return (
           <li
             key={tab}
-            className={`tabs__item ${isActive === index ? 'active' : ''}`}
-            onClick={() => setIsActive(index)}
+            className={`tabs__item ${sortingRule === index ? 'active' : ''}`}
+            onClick={() => dispatch(setSortingRule(index))}
           >
             {tab}
           </li>

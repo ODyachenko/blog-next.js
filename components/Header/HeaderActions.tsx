@@ -10,8 +10,10 @@ export const HeaderActions: FC = () => {
   const dispatch = useAppDispatch();
 
   const onClickLogout = () => {
-    localStorage.removeItem('token');
-    dispatch(setIsAuth(false));
+    if (confirm('Do you want logout?')) {
+      localStorage.removeItem('token');
+      dispatch(setIsAuth(false));
+    }
   };
 
   useEffect(() => {

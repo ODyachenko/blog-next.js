@@ -6,9 +6,8 @@ import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { PostActions } from './PostActions';
 import { convertDate } from '@/utils/convertDate';
-import { useAppSelector } from '@/hooks/hooks';
-import { RootState } from '@/redux/store';
 import './styles.scss';
+import { useGetAuthUserQuery } from '@/redux/api/user.api';
 
 export const Post: FC = ({
   _id,
@@ -19,7 +18,7 @@ export const Post: FC = ({
   tags,
   viewsCount,
 }: any) => {
-  const { isAuth } = useAppSelector((state: RootState) => state.user);
+  const { data } = useGetAuthUserQuery();
 
   return (
     <div className="post">
@@ -56,7 +55,7 @@ export const Post: FC = ({
           </div>
         </div>
       </Link>
-      {isAuth && <PostActions id={_id} />}
+      {data && user._id === data._id && <PostActions id={_id} />}
     </div>
   );
 };
