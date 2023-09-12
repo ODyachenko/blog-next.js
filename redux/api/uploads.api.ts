@@ -4,7 +4,7 @@ export const uploadsApi = createApi({
   reducerPath: 'uploadsApi',
   tagTypes: ['uploads'],
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/uploads`,
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}uploads`,
   }),
   endpoints: (builder: any) => ({
     uploadImage: builder.mutation({
