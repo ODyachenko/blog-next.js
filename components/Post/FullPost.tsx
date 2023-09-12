@@ -47,9 +47,9 @@ export const FullPost: FC<iPost> = ({
             <div className="post__stats-item">
               <AiOutlineEye size={20} /> {viewsCount}
             </div>
-            <div className="post__stats-item">
+            {/* <div className="post__stats-item">
               <LuMessageSquare size={20} /> {0}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

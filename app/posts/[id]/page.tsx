@@ -11,7 +11,7 @@ interface iPostParams {
 }
 
 export default function page({ params }: iPostParams) {
-  const { data, isLoading, isError } = useGetPostQuery(params.id);
+  const { data } = useGetPostQuery(params.id);
 
   return (
     <PageWrapper>

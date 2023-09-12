@@ -19,8 +19,8 @@ import { iPost } from '@/types';
 import './styles.scss';
 
 type CreatePostProps = {
-  data: iPost;
-  isLoading: boolean;
+  data?: iPost;
+  isLoading?: boolean;
 };
 
 const initialState: ComponentState = {
@@ -36,8 +36,6 @@ export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
   const [postData, setPostData] = useState(initialState);
   const router = useRouter();
   const [editPost] = useEditPostMutation();
-
-  isLoading && console.log(isLoading);
 
   useEffect(() => {
     if (data) {
@@ -97,7 +95,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
   const handleEditPost = async () => {
     try {
       const editData = {
-        id: data._id,
+        id: data?._id,
         title: postData.title,
         text: postData.text,
         tags: postData.tags,
