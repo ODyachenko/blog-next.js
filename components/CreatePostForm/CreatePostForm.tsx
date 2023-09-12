@@ -76,7 +76,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
       const { data }: any = await uploadImage(formData);
       setPostData({
         ...postData,
-        imageUrl: `http://localhost:4444${data.url}`,
+        imageUrl: `${process.env.NEXT_PUBLIC_API_URL}/${data.url}`,
       });
     } catch (error) {
       console.error(error);

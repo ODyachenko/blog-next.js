@@ -4,7 +4,7 @@ export const commentsApi = createApi({
   reducerPath: 'commentsApi',
   tagTypes: ['comments'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4444',
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
   }),
   endpoints: (builder: any) => ({
     getComments: builder.query({
