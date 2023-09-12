@@ -54,7 +54,7 @@ export const RegisterForm: FC = () => {
       const formData = new FormData();
       formData.append('image', event.target.files[0]);
       const { data }: any = await uploadImage(formData);
-      setAvatar(`${process.env.NEXT_PUBLIC_API_URL}/${data.url}`);
+      setAvatar(`${process.env.NEXT_PUBLIC_API_URL}${data.url}`);
     } catch (error) {
       console.error(error);
     }
