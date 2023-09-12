@@ -1,12 +1,14 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { ComponentState, FC, useEffect } from 'react';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { setIsAuth } from '@/redux/slices/userSlice';
 import { RootState } from '@/redux/store';
 
 export const HeaderActions: FC = () => {
-  const { isAuth } = useAppSelector((state: RootState) => state.user);
+  const { isAuth }: ComponentState = useAppSelector(
+    (state: RootState) => state.user
+  );
   const dispatch = useAppDispatch();
 
   const onClickLogout = () => {

@@ -7,11 +7,6 @@ export const uploadsApi = createApi({
     baseUrl: 'http://localhost:4444/uploads',
   }),
   endpoints: (builder: any) => ({
-    // getPosts: builder.query({
-    //   query: () => `/posts`,
-    //   providesTags: ['posts'],
-    // }),
-
     uploadImage: builder.mutation({
       query: (body: any) => ({
         method: 'POST',
@@ -22,16 +17,6 @@ export const uploadsApi = createApi({
       }),
       invalidatesTags: ['uploads'],
     }),
-    // deletePost: builder.mutation({
-    //   query: (id: string) => ({
-    //     url: `/posts/${id}`,
-    //     headers: {
-    //       Authorization: localStorage.getItem('token'),
-    //     },
-    //     method: 'DELETE',
-    //   }),
-    //   invalidatesTags: ['posts'],
-    // }),
   }),
 });
 

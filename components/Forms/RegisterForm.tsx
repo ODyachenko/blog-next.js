@@ -32,7 +32,7 @@ export const RegisterForm: FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
       const formData = { ...data, avatarUrl: avatar };
-      const response = await createUser(formData);
+      const response: any = await createUser(formData);
 
       if (response.error) {
         if (response.error.data.message) {
@@ -53,7 +53,7 @@ export const RegisterForm: FC = () => {
     try {
       const formData = new FormData();
       formData.append('image', event.target.files[0]);
-      const { data } = await uploadImage(formData);
+      const { data }: any = await uploadImage(formData);
       setAvatar(`http://localhost:4444${data.url}`);
     } catch (error) {
       console.error(error);

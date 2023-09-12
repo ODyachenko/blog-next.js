@@ -1,6 +1,6 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { FC, useState } from 'react';
+import { ComponentState, FC } from 'react';
 import { RootState } from '@/redux/store';
 import './styles.scss';
 import { setSortingRule } from '@/redux/slices/postsSlice';
@@ -8,7 +8,9 @@ import { setSortingRule } from '@/redux/slices/postsSlice';
 const tabsList: string[] = ['New', 'Popular'];
 
 export const Tabs: FC = () => {
-  const { sortingRule } = useAppSelector((state: RootState) => state.posts);
+  const { sortingRule }: ComponentState = useAppSelector(
+    (state: RootState) => state.posts
+  );
   const dispatch = useAppDispatch();
 
   return (

@@ -69,7 +69,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
     try {
       const formData = new FormData();
       formData.append('image', event.target.files[0]);
-      const { data } = await uploadImage(formData);
+      const { data }: any = await uploadImage(formData);
       setPostData({
         ...postData,
         imageUrl: `http://localhost:4444${data.url}`,

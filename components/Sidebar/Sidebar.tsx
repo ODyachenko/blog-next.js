@@ -9,7 +9,7 @@ import './styles.scss';
 const tags: string[] = ['react', 'typescript', 'node'];
 
 export const Sidebar: FC = () => {
-  const { data, isLoading, isError } = useGetCommentsQuery();
+  const { data }: any = useGetCommentsQuery('');
 
   return (
     <aside className="sidebar">

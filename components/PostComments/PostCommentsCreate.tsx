@@ -11,7 +11,7 @@ type Inputs = {
 };
 
 export const PostCommentsCreate: FC = () => {
-  const { data, isLoading, isError } = useGetAuthUserQuery();
+  const { data }: any = useGetAuthUserQuery('');
   const [createComment, status] = useCreateCommentMutation();
   const {
     register,

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ComponentState, FC } from 'react';
 import Link from '@/node_modules/next/link';
 import Image from '@/node_modules/next/image';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -21,8 +21,10 @@ export const Post: FC<iPost> = ({
   tags,
   viewsCount,
 }) => {
-  const { data } = useGetAuthUserQuery();
-  const { isAuth } = useAppSelector((state: RootState) => state.user);
+  const { data }: any = useGetAuthUserQuery('');
+  const { isAuth }: ComponentState = useAppSelector(
+    (state: RootState) => state.user
+  );
 
   return (
     <div className="post">

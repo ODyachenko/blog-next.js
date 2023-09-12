@@ -1,8 +1,8 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { ComponentState, FC, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { BeatLoader } from '@/node_modules/react-spinners';
+import { BeatLoader } from 'react-spinners';
 import { setIsAuth } from '@/redux/slices/userSlice';
 import { useLoginUserMutation } from '@/redux/api/user.api';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
@@ -22,7 +22,9 @@ export const LoginForm: FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' });
   const [loginUser, { isLoading }] = useLoginUserMutation();
-  const { isAuth } = useAppSelector((state: RootState) => state.user);
+  const { isAuth }: ComponentState = useAppSelector(
+    (state: RootState) => state.user
+  );
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -32,7 +34,7 @@ export const LoginForm: FC = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     try {
-      const response = await loginUser(data);
+      const response: any = await loginUser(data);
       if (response.error) {
         throw new Error(response.error.data.message);
       }
@@ -40,7 +42,7 @@ export const LoginForm: FC = () => {
       dispatch(setIsAuth(true));
       reset();
     } catch (error: any) {
-      console.log(error.message);
+      console.error(error.message);
       alert(error.message || 'Invalid login or password');
     }
   };

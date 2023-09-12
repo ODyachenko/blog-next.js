@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
+import { Slice } from '@/node_modules/@reduxjs/toolkit/dist/createSlice';
 
 // // Define a type for the slice state
 interface iUser {
@@ -12,11 +13,11 @@ const initialState: iUser = {
   isAuth: false,
 };
 
-export const userSlice: any = createSlice({
+export const userSlice: Slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setIsAuth: (state: RootState, action: PayloadAction<number>) => {
+    setIsAuth: (state: any, action: PayloadAction<number>) => {
       state.isAuth = action.payload;
     },
   },

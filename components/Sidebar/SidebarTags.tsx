@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ComponentState, FC } from 'react';
 import { PiHashStraightBold } from '@/node_modules/react-icons/pi';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { RootState } from '@/redux/store';
@@ -9,7 +9,9 @@ type SidebarTagsProps = {
 };
 
 export const SidebarTags: FC<SidebarTagsProps> = ({ tags }) => {
-  const { filterRules } = useAppSelector((state: RootState) => state.posts);
+  const { filterRules }: ComponentState = useAppSelector(
+    (state: RootState) => state.posts
+  );
   const dispatch = useAppDispatch();
 
   return (
