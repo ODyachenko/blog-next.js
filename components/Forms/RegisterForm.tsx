@@ -25,7 +25,7 @@ export const RegisterForm: FC = () => {
   const [createUser, { isLoading }] = useCreateUserMutation();
   const [uploadImage] = useUploadImageMutation();
   const [avatar, setAvatar] = useState(
-    `${process.env.NEXT_PUBLIC_API_URL}uploads/avatar_private.png`
+    `${process.env.NEXT_PUBLIC_API_URL}/uploads/avatar_private.png`
   );
   const router = useRouter();
 
