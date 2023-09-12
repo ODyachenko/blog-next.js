@@ -1,4 +1,3 @@
-'use client';
 import {
   ComponentState,
   FC,
@@ -8,9 +7,9 @@ import {
   useMemo,
   useState,
 } from 'react';
+import dynamic from 'next/dynamic';
 import Image from '@/node_modules/next/image';
 import { useRouter } from 'next/navigation';
-import SimpleMDE from 'react-simplemde-editor';
 import { useUploadImageMutation } from '@/redux/api/uploads.api';
 import {
   useCreatePostMutation,
@@ -30,6 +29,10 @@ const initialState: ComponentState = {
   text: '',
   imageUrl: '',
 };
+
+const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
+  ssr: false,
+});
 
 export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
   const [uploadImage] = useUploadImageMutation();
