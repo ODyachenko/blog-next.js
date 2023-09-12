@@ -4,7 +4,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { LuMessageSquare } from 'react-icons/lu';
 import { PostTags } from './PostTags';
 import { convertDate } from '@/utils/convertDate';
-import ReactMarkdown from '@/node_modules/react-markdown/index';
+import ReactMarkdown from 'react-markdown';
 import { iPost } from '@/types';
 import './styles.scss';
 
@@ -19,14 +19,16 @@ export const FullPost: FC<iPost> = ({
 }) => {
   return (
     <div className="post fullpost">
-      <Image
-        className="post__cover"
-        src={imageUrl}
-        alt="Post cover"
-        width={1148}
-        height={300}
-        priority
-      />
+      {imageUrl && (
+        <Image
+          className="post__cover"
+          src={imageUrl}
+          alt="Post cover"
+          width={1148}
+          height={300}
+          priority
+        />
+      )}
       <div className="post__footer">
         <Image
           className="post__avatar"

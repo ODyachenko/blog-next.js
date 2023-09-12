@@ -132,6 +132,10 @@
     border: 1px solid #dedede;
     border-radius: 6px;
     padding: 20px;
+
+    & .comments {
+      margin-bottom: 20px;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import {
+  ComponentState,
   FC,
   FormEvent,
   useCallback,
@@ -13,30 +14,30 @@ import { useUploadImageMutation } from '@/redux/api/uploads.api';
 import {
   useCreatePostMutation,
   useEditPostMutation,
-  useGetPostQuery,
 } from '@/redux/api/posts.api';
+import { iPost } from '@/types';
 import './styles.scss';
 
 type CreatePostProps = {
-  id: string;
+  data: iPost;
+  isLoading: boolean;
 };
 
-const initialState = {
+const initialState: ComponentState = {
   title: '',
   tags: [],
   text: '',
   imageUrl: '',
 };
 
-export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
+export const CreatePostForm: FC<CreatePostProps> = ({ data, isLoading }) => {
   const [uploadImage] = useUploadImageMutation();
   const [createPost] = useCreatePostMutation();
   const [postData, setPostData] = useState(initialState);
   const router = useRouter();
-
-  //////////////////////// @TODO
-  const { data, isLoading, isError } = useGetPostQuery(id);
   const [editPost] = useEditPostMutation();
+
+  isLoading && console.log(isLoading);
 
   useEffect(() => {
     if (data) {
@@ -95,14 +96,14 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
 
   const handleEditPost = async () => {
     try {
-      const data = {
-        id: id,
+      const editData = {
+        id: data._id,
         title: postData.title,
         text: postData.text,
         tags: postData.tags,
         imageUrl: postData.imageUrl,
       };
-      await editPost(data);
+      await editPost(editData);
       setPostData(initialState);
       router.push('/');
     } catch (error) {
@@ -122,7 +123,7 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
 
   const onSubmitForm = (event: FormEvent) => {
     event.preventDefault();
-    if (id) {
+    if (data) {
       handleEditPost();
       return;
     }
@@ -154,7 +155,6 @@ export const CreatePostForm: FC<CreatePostProps> = ({ id }) => {
             type="file"
             name="imageUrl"
             accept="image/*"
-            required
             hidden
             onChange={handleChangeFile}
           />

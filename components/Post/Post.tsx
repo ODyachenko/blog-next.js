@@ -27,14 +27,16 @@ export const Post: FC<iPost> = ({
   return (
     <div className="post">
       <Link href={`/posts/${_id}`}>
-        <Image
-          className="post__cover"
-          src={imageUrl}
-          alt={title}
-          width={1148}
-          height={300}
-          priority
-        />
+        {imageUrl && (
+          <Image
+            className="post__cover"
+            src={imageUrl}
+            alt={title}
+            width={1148}
+            height={300}
+            priority
+          />
+        )}
         <div className="post__footer">
           <Image
             className="post__avatar"
